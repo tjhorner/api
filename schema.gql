@@ -104,7 +104,6 @@ type Location {
 # Blog query
 
 type Blog {
-  title: String
   link: String
   posts(
     limit: Int = 10,
