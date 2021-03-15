@@ -8,10 +8,16 @@ const spotify = new Spotify({
   refreshToken: process.env.SPOTIFY_REFRESH_TOKEN
 })
 
-spotify.refreshAccessToken((err, res) => {
-  if(!err) spotify.setAccessToken(res.body.access_token)
-  if(err) console.error(err)
-})
+const refreshAccessToken = () => {
+  spotify.refreshAccessToken((err, res) => {
+    if(!err) spotify.setAccessToken(res.body.access_token)
+    if(err) console.error(err)
+  })
+}
+
+setInterval(() => {
+  refreshAccessToken()
+}, 1800000) // 30 minutes
 
 const cacheLength = 30000 // 30 seconds
 let cached = null
