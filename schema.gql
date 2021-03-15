@@ -80,13 +80,16 @@ type Artist {
 type PlaybackState {
   shuffle: Boolean
   repeat: RepeatBehavior
-  # The current progress into the currently playing track, in milliseconds.
+  # The progress into the currently playing track, in milliseconds.
   progress: Int
 }
 
 enum RepeatBehavior {
+  # Repeat is off.
   OFF
+  # The current track will repeat.
   TRACK
+  # Tracks will repeat based on context (e.g. album or playlist).
   CONTEXT
 }
 
