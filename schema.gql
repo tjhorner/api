@@ -1,0 +1,144 @@
+# Profile query
+
+type Profile {
+  firstName: String
+  lastName: String
+  pronouns: String
+  age: Int
+  bio: String
+  employers: [Employer]
+  socials: [SocialProfile]
+  projects: [Project]
+}
+
+type Employer {
+  name: String
+  title: String
+  started: String
+  ended: String
+  current: Boolean
+}
+
+type SocialProfile {
+  name: String
+  link: String
+}
+
+type Project {
+  slug: String
+  name: String
+  shortDescription: String
+  description: String
+  headerImageUrl: String
+  links: [ProjectLink]
+  tags: [String]
+}
+
+type ProjectLink {
+  type: ProjectLinkType
+  url: String
+}
+
+enum ProjectLinkType {
+  GITHUB
+  WEBSITE
+  OTHER
+}
+
+# End profile query
+
+# Now playing query
+
+type NowPlaying {
+  isPlaying: Boolean!
+  track: Track
+  album: Album
+  state: PlaybackState
+}
+
+type Track {
+  title: String
+  artists: [Artist]
+  duration: Int
+  link: String
+  previewUrl: String
+}
+
+type Album {
+  title: String
+  artists: [Artist]
+  link: String
+  imageUrl: String
+}
+
+type Artist {
+  name: String
+  link: String
+}
+
+type PlaybackState {
+  shuffle: Boolean
+  repeat: RepeatBehavior
+  progress: Int
+}
+
+enum RepeatBehavior {
+  OFF
+  TRACK
+  CONTEXT
+}
+
+# End now playing query
+
+# Location query
+
+type Location {
+  at: String
+  coarseLocation: String
+  searchQuery: String
+  battery: Int
+}
+
+# End location query
+
+# Blog query
+
+type Blog {
+  title: String
+  link: String
+  posts(
+    limit: Int = 10,
+    page: Int = 1,
+    order: SortOrder = DESC
+  ): [BlogPost]
+}
+
+type BlogPost {
+  id: String
+  title: String
+  excerpt: String
+  featureImageUrl: String
+  link: String
+  featured: Boolean
+  tags: [BlogPostTag]
+  publishedAt: String
+}
+
+type BlogPostTag {
+  name: String
+  slug: String
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+# End blog query
+
+type Query {
+  profile: Profile
+  blog: Blog
+  nowPlaying: NowPlaying
+  location: Location
+}
