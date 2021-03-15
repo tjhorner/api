@@ -19,6 +19,8 @@ setInterval(() => {
   refreshAccessToken()
 }, 1800000) // 30 minutes
 
+refreshAccessToken()
+
 const cacheLength = 30000 // 30 seconds
 let cached = null
 let cachedAt = -1
