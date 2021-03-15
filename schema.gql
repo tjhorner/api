@@ -8,7 +8,10 @@ type Profile {
   bio: String
   employers: [Employer]
   socials: [SocialProfile]
+  # Get all projects.
   projects: [Project]
+  # Get a single project by its ID.
+  project(id: ID!): Project
 }
 
 type Employer {
@@ -25,7 +28,7 @@ type SocialProfile {
 }
 
 type Project {
-  slug: String
+  id: ID!
   name: String
   shortDescription: String
   description: String
@@ -36,6 +39,7 @@ type Project {
 
 type ProjectLink {
   type: ProjectLinkType
+  name: String
   url: String
 }
 
