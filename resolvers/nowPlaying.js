@@ -21,10 +21,6 @@ setInterval(() => {
 
 refreshAccessToken()
 
-const cacheLength = 30000 // 30 seconds
-let cached = null
-let cachedAt = -1
-
 const mapArtist = artist => {
   return {
     name: artist.name,
@@ -33,13 +29,10 @@ const mapArtist = artist => {
 }
 
 module.exports = async () => {
-  if (Date.now() - cachedAt < cacheLength)
-    return cached
-
   const { body: playbackState } = await spotify.getMyCurrentPlaybackState()
-  
+
   const response = {
-    isPlaying: playbackState.is_playing
+    isPlaying: playbackState.is_playing || false
   }
 
   if (playbackState.is_playing) {
@@ -64,9 +57,6 @@ module.exports = async () => {
       progress: playbackState.progress_ms
     }
   }
-
-  cached = response
-  cachedAt = Date.now()
   
   return response
 }

@@ -7,16 +7,11 @@ const ghost = new Ghost({
 })
 
 const HARD_LIMIT = 10
-let cachedLink = null
 
 module.exports = () => {
   return {
     async link() {
-      if (cachedLink) return cachedLink
-
       const { url } = await ghost.settings.browse()
-      cachedLink = url
-
       return url
     },
 

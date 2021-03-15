@@ -113,7 +113,7 @@ type Location {
 # Blog query
 
 type Blog {
-  link: String
+  link: String @cacheControl(maxAge: 3600)
   posts(
     limit: Int = 10,
     page: Int = 1,
@@ -147,6 +147,6 @@ enum SortOrder {
 type Query {
   profile: Profile
   blog: Blog
-  nowPlaying: NowPlaying
+  nowPlaying: NowPlaying @cacheControl(maxAge: 30)
   location: Location
 }
