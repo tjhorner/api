@@ -59,6 +59,7 @@ type NowPlaying {
 type Track {
   title: String
   artists: [Artist]
+  # The duration of the track, in milliseconds.
   duration: Int
   link: String
   previewUrl: String
@@ -79,6 +80,7 @@ type Artist {
 type PlaybackState {
   shuffle: Boolean
   repeat: RepeatBehavior
+  # The current progress into the currently playing track, in milliseconds.
   progress: Int
 }
 
