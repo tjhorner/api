@@ -12,7 +12,9 @@ const resolvers = {
 
 const server = new ApolloServer({
   typeDefs: fs.readFileSync("./schema.gql").toString("utf-8"),
-  resolvers
+  resolvers,
+  introspection: true,
+  playground: true
 })
 
 server.listen().then(({ url }) => {
