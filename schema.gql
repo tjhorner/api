@@ -144,9 +144,50 @@ enum SortOrder {
 
 # End blog query
 
+# TETR.IO query
+
+type TetrioUser {
+  username: String
+  verified: Boolean
+  xp: Int
+  supporter: Boolean
+  role: String
+  gamesPlayed: Int
+  gamesWon: Int
+  gameTime: Float
+  friendCount: Int
+  country: String
+  bio: String
+  league: TetraLeagueStats @cacheControl(maxAge: 1800)
+}
+
+type TetraLeagueStats {
+  apm: Float
+  decaying: Boolean
+  gamesPlayed: Int
+  gamesWon: Int
+  glicko: Float
+  nextAt: Int
+  nextRank: String
+  percentile: Float
+  percentileRank: String
+  pps: Float
+  prevAt: Int
+  prevRank: String
+  rank: String
+  rating: Float
+  rd: Float
+  standing: Int
+  standingLocal: Int
+  vs: Float
+}
+
+# End TETR.IO query
+
 type Query {
   profile: Profile
   blog: Blog
   nowPlaying: NowPlaying @cacheControl(maxAge: 30)
   location: Location
+  tetrio: TetrioUser @cacheControl(maxAge: 1800)
 }
