@@ -146,11 +146,19 @@ enum SortOrder {
 
 # TETR.IO query
 
+type TetrioQuery {
+  profile: TetrioUser @cacheControl(maxAge: 300)
+  league: TetraLeagueStats @cacheControl(maxAge: 300)
+  records: TetrioRecords @cacheControl(maxAge: 900)
+  # news: [TetrioNews] @cacheControl(maxAge: 60)
+}
+
 type TetrioUser {
   username: String
   verified: Boolean
   xp: Int
   supporter: Boolean
+  supporterTier: Int
   role: String
   gamesPlayed: Int
   gamesWon: Int
@@ -158,7 +166,6 @@ type TetrioUser {
   friendCount: Int
   country: String
   bio: String
-  league: TetraLeagueStats @cacheControl(maxAge: 1800)
 }
 
 type TetraLeagueStats {
@@ -182,6 +189,35 @@ type TetraLeagueStats {
   vs: Float
 }
 
+type TetrioRecords {
+  fortyLines: TetrioRecord
+  blitz: TetrioRecord
+  zen: TetrioZenRecord
+}
+
+type TetrioRecord {
+  record: TetrioRecordData
+  rank: Int
+}
+
+type TetrioRecordData {
+  stream: String
+  replayId: String
+  ts: String
+  endContext: TetrioReplayState
+}
+
+type TetrioReplayState {
+  finalTime: Int
+  inputs: Int
+  score: Int
+}
+
+type TetrioZenRecord {
+  level: Int
+  score: Int
+}
+
 # End TETR.IO query
 
 type Query {
@@ -189,5 +225,5 @@ type Query {
   blog: Blog
   nowPlaying: NowPlaying @cacheControl(maxAge: 30)
   location: Location
-  tetrio: TetrioUser @cacheControl(maxAge: 1800)
+  tetrio: TetrioQuery
 }
