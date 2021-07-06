@@ -190,13 +190,13 @@ type TetraLeagueStats {
 }
 
 type TetrioRecords {
-  fortyLines: TetrioRecord
-  blitz: TetrioRecord
-  zen: TetrioZenRecord
+  fortyLines: TetrioRecord @cacheControl(maxAge: 900)
+  blitz: TetrioRecord @cacheControl(maxAge: 900)
+  zen: TetrioZenRecord @cacheControl(maxAge: 900)
 }
 
 type TetrioRecord {
-  record: TetrioRecordData
+  record: TetrioRecordData @cacheControl(maxAge: 900)
   rank: Int
 }
 
@@ -204,7 +204,7 @@ type TetrioRecordData {
   stream: String
   replayId: String
   ts: String
-  endContext: TetrioReplayState
+  endContext: TetrioReplayState @cacheControl(maxAge: 900)
 }
 
 type TetrioReplayState {
