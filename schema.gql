@@ -220,10 +220,19 @@ type TetrioZenRecord {
 
 # End TETR.IO query
 
+# Home query
+
+type HomeStatus {
+  deskHeight: Float
+}
+
+# End home query
+
 type Query {
   profile: Profile
   blog: Blog
   nowPlaying: NowPlaying @cacheControl(maxAge: 30)
   location: Location
   tetrio: TetrioQuery
+  home: HomeStatus @cacheControl(maxAge: 30)
 }
