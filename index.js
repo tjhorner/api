@@ -3,12 +3,12 @@ require('dotenv').config()
 const { ApolloServer } = require('apollo-server')
 const responseCachePlugin = require('apollo-server-plugin-response-cache')
 const fs = require('fs')
-const { profile, location, nowPlaying, blog, tetrio, home } = require('./resolvers')
+
+const Query = require('./resolvers/query')
+// const Mutation = require('./resolvers/mutation')
 
 const resolvers = {
-  Query: {
-    profile, location, nowPlaying, blog, tetrio, home
-  }
+  Query //, Mutation
 }
 
 const server = new ApolloServer({

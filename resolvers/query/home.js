@@ -1,7 +1,7 @@
 const axios = require('axios').default
 
 module.exports = async () => {
-  const { data: deskInfo } = await axios.get(`${process.env.HASS_BASE_URL}/api/states/sensor.standing_desk_height`, {
+  const { data: deskInfo } = await axios.get(`${process.env.HASS_BASE_URL}/api/states/sensor.desk_height`, {
     headers: {
       "Authorization": `Bearer ${process.env.HASS_API_KEY}`
     }

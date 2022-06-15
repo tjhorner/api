@@ -236,3 +236,13 @@ type Query {
   tetrio: TetrioQuery
   home: HomeStatus @cacheControl(maxAge: 30)
 }
+
+# type DeskHeightChangeIntent {
+#   cost: Int
+#   delta: Float
+#   paymentIntentClientSecret: String
+# }
+
+# type Mutation {
+#   changeDeskHeight(delta: Float!): DeskHeightChangeIntent
+# }

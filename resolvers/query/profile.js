@@ -1,4 +1,4 @@
-const profile = require('../data/profile.json')
+const profile = require('../../data/profile.json')
 
 const birthday = new Date(profile.birthday * 1000)
 const ONE_YEAR = 31556900000
